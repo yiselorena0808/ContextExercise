@@ -1,10 +1,10 @@
 import { createContext, useContext, ReactNode, useState } from "react";
 
 const UserContext = createContext({
-  nombreRol: '',setNombreRol: (nombreRol: string) => {},
-  descripcion: '',setDescripcion: (descripcion: string) => {},});
+  nombreRol:'',setNombreRol: (nombreRol: string) => {},
+  descripcion:'',setDescripcion: (descripcion: string) => {},});
 
-export const UserProvider = ({ children }: { children: ReactNode }) => {
+export const UserProvider = ({ children }) => {
   const [nombreRol, setNombreRol] = useState('');
   const [descripcion, setDescripcion] = useState('');
 
@@ -15,6 +15,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const userUser = () => {
+export const userUser =() => {
   return useContext(UserContext);
 };

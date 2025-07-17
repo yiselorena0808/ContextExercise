@@ -17,17 +17,15 @@ const Datos: React.FC = () => {
 
       <p>Nombre del Rol: {nombreRol}</p>
       <input
-        type="text"
-        onChange={(event) => setNombreRol(event.target.value)}
+        type="text"onChange={(event) => setNombreRol(event.target.value)}
       ></input>
 
       <p>Descripción: {descripcion}</p>
       <input
-        type="text"
-        onChange={(event) => setDescripcion(event.target.value)}
+        type="text"onChange={(event) => setDescripcion(event.target.value)}
       ></input>
 
-      <button onClick={irDash}>Visualizar</button>
+      <button onClick={irDash}>Ver</button>
     </div>
   );
 };
