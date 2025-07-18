@@ -1,3 +1,6 @@
+//REALICE OTRO EJERCICIO DENTRO DEL MISMO ARCHIVO CONTEXT TOMANDO DE BASE EL EJERCICIO ANTERIOR,ACTUALMENTE SE ESTA PROBANDO
+//ES EL DE LOGIN Y REGISTER
+
 import React from "react";
 import Register from "./pages/Register";
 import { UserProvider } from "./UserContext2";
@@ -11,6 +14,9 @@ return(
 )
 }
 export default App;
+
+
+//COMENTARIO PARA APP QUE SE REALIZO PARA TRABAJO DE CONTEXT DE NOMBRE DE ROL Y DESCRIPCION 
 
 /*import React from "react";
 import { UserProvider } from "./UserContext";
