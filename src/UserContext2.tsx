@@ -1,57 +1,69 @@
-import {createContext,useContext,useState,ReactNode}from 'react';
+import { createContext, useContext, useState, ReactNode } from "react";
 
-//crear contxt
-
+// Creamos el contexto
 const UserContext = createContext({
-  user:null,
-  login:async ()=>{},
-  register:async()=>{}
+  user: null,
+  login: async (email: string, password: string) => {},
+  register: async (email: string, password: string) => {},
 });
 
-//provider del context
+//provider 
+export const UserProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
 
-export const UserProvider=({children}:{children:ReactNode})=>{
-    const [user,setUser]= useState('')
-    const register=async ({email, password})=>{
-       const res= await fetch('http://localhost:3333/register',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({email, password}),
-        })
-        const data = await res.json();
-        if(res){
-            setUser(data.user)
-        }else{
-            setUser(data.mensaje)
-        }
+  const register = async (email: string, password: string) => {
+    try {
+      const res = await fetch("http://localhost:3333/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setUser(data.user);
+      } else {
+        setUser(data.mensaje);
+      }
+    } catch (error) {
+      setUser(null);
+      console.error(error);
     }
+  };
 
-    const login = async ({ email, password }) => {
-            const res = await fetch('http://localhost:3333/login', {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        });
+  const login = async (email: string, password: string) => {
+    try {
+      const res = await fetch("http://localhost:3333/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-        const data = await res.json();
+      const data = await res.json();
 
-        if (res.ok) {
-            setUser(data.respuesta);
-        } else {
-            setUser(data.msj);
-        }
-        };
+      if (res.ok) {
+         setUser(data.respuesta);
+      } else {
+        setUser(data.msj);
+      }
+    } catch (error) {
+      setUser(null);
+      console.error(error);
+    }
+  };
 
-        return (
-        <UserContext.Provider value={{ user, login, register }}>
-            {children}
-        </UserContext.Provider>
-        );
-}
-export const userUser = () => {
+  return (
+    <UserContext.Provider value={{ user, login, register }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
+
+export const useUser = () => {
   return useContext(UserContext);
 };
