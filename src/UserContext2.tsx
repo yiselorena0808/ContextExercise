@@ -11,8 +11,7 @@ const UserContext = createContext({
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  const register = async (email: string, password: string) => {
-    try {
+  const register = async (email:string, password:string) => {
       const res = await fetch("http://localhost:3333/register", {
         method: "POST",
         headers: {
@@ -28,14 +27,9 @@ export const UserProvider = ({ children }) => {
       } else {
         setUser(data.mensaje);
       }
-    } catch (error) {
-      setUser(null);
-      console.error(error);
-    }
   };
 
   const login = async (email: string, password: string) => {
-    try {
       const res = await fetch("http://localhost:3333/login", {
         method: "POST",
         headers: {
@@ -51,10 +45,6 @@ export const UserProvider = ({ children }) => {
       } else {
         setUser(data.msj);
       }
-    } catch (error) {
-      setUser(null);
-      console.error(error);
-    }
   };
 
   return (
