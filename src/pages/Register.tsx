@@ -8,13 +8,8 @@ const Register: React.FC = () => {
 
   const guardar = async (event: React.FormEvent) => {
     event.preventDefault();
-    try {
       await register(email, password);
-      alert("Registrado exitoso");
-    } catch (error) {
-      console.error("Registro fallido:", error);
-      alert("Error de registro");
-    }
+    
   };
 
   return (

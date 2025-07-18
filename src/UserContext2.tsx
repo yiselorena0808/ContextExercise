@@ -3,8 +3,8 @@ import { createContext, useContext, useState, ReactNode } from "react";
 // Creamos el contexto
 const UserContext = createContext({
   user: null,
-  login: async (email: string, password: string) => {},
-  register: async (email: string, password: string) => {},
+  login: async () => {},
+  register: async () => {},
 });
 
 //provider 
